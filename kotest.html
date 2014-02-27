@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>kotest.html A test of Knockout.js</title>
+    <meta name="description" content="">
+    <meta name="author" content="Marty">
+    <script type='text/javascript' src='lib/knockout-3.0.0.js'></script>
+    <style>
+      html, body {
+        padding: 0;
+        margin: 0;
+      }
+      footer {
+        position: absolute;
+        width: 100%;
+        height: 4em;
+        bottom: 0px;
+        background: lightgray;
+      }
+      #legend {
+        position: absolute;
+        right: 60px;
+        top: 50px;
+        background: lightgray;
+      }
+      #legendControl {
+        border: 1px solid black;
+        border-radius: 3px;
+        width: intrinsic;
+        width: -moz-max-content;
+      }
+    .active {/*Use Bootstrap CSS to style this class*/
+        background-color: darkgray;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Test of Knockout.js</h1>
+    <div id="legend" data-bind="visible: showLegend">
+      Legend
+    </div>
+    <p>The legend is visible: <span data-bind="text: showLegend"></span></p>
+    <footer>
+      <button id="legendControl" data-bind="click: toggleLegend(), css: { active: showLegend}">Show legend</button>
+      <div data-bind="css: { active: showLegend}">
+        Click Me
+      </div>
+    </footer>
+    <script type="text/javascript">
+      var viewModel = {
+        showLegend: ko.observable(true),//Sigh. The initial state will always be the opposite of what we set it here.
+        toggleLegend: function() {
+          this.showLegend() ? this.showLegend(false) : this.showLegend(true);
+        }
+      };
+      //viewModel.showLegend(false);
+      ko.applyBindings(viewModel);
+    </script>
+  </body>
+</html>
